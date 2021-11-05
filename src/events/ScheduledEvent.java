@@ -44,4 +44,9 @@ public class ScheduledEvent implements Event {
 		return eventOffHold;
 		
 	}
+	
+	public String toString() {
+		return "ScheduledEvent," + eventName + "," + eventDescription + "," + eventTime + "," + eventOffHold;
+		
+	}
 }

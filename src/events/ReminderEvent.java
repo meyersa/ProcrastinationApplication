@@ -1,6 +1,6 @@
 package events;
 
-public class ReminderEvent {
+public class ReminderEvent implements Event {
 
 	private String eventName;
 	private String eventDescription;
@@ -33,5 +33,10 @@ public class ReminderEvent {
 	public int getTime() {
 		return eventTime;
 
+	}
+	
+	public String toString() {
+		return "ReminderEvent," + eventName + "," + eventDescription + "," + eventTime;
+		
 	}
 }
