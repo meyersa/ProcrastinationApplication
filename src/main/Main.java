@@ -22,13 +22,15 @@ public class Main {
 
 		MainGUI MainGUI = new MainGUI();
 		
-		//try {
-		//	MainGUI.start();
-		//} catch (Exception e) {
-		//	System.err.println("Fatal. Failed to start application.");
-		//	e.printStackTrace();
-		//	
-		//}
+		System.out.println("Success");
+		
+		try {
+			MainGUI.start();
+		} catch (Exception e) {
+			System.err.println("Fatal. Failed to start application.");
+			e.printStackTrace();
+			
+		}
 		// Starts GUI
 		
 		// -----------------------------------------
