@@ -1,0 +1,7 @@
+.text-area *.content {
+    -fx-background-color: #424144;
+}
+
+.text-area {
+    -fx-focus-color:  #424144;
+}

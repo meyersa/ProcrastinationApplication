@@ -1,67 +1,47 @@
 package gui;
 
+import javafx.event.ActionEvent;
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 
 public class MainGUI extends Application {
+	private double xOffset = 0;
+	private double yOffset = 0;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		MenuItem Preferences = new MenuItem("Preferences");
-		MenuItem Save = new MenuItem("Save");
-		MenuItem About = new MenuItem("About");
-		MenuItem Quit = new MenuItem("Quit");
-		
-		Menu Menu = new Menu();
-		
-		Menu.getItems().addAll(Preferences, Save, About, Quit);
-		
-		MenuBar MenuBar = new MenuBar(Menu);
-		
-		// Top Bar 
-		
-		ScrollPane EventsPane = new ScrollPane();
-		
-		EventsPane.pannableProperty().set(true);
+		Parent root = FXMLLoader.load(getClass().getResource("gui2.fxml"));
 
-		EventsPane.fitToWidthProperty().set(true);
-		EventsPane.fitToHeightProperty().set(true);
+		Scene scene = new Scene(root);
 
-		AnchorPane EventsAnchor = new AnchorPane(EventsPane);
-		
-		// Events Half of the Splitpane
-		
-		AnchorPane AddEventAnchor = new AnchorPane();
-		
-		
-		// Create Events Half of the SplitPane
-		
-		SplitPane SplitPane = new SplitPane();
-		
-		SplitPane.getItems().addAll(EventsAnchor, AddEventAnchor);
-		
-		// Lower half
-		
-		VBox VBox = new VBox(MenuBar, SplitPane);
-		
-		VBox.setPrefWidth(1000);
-		VBox.setPrefHeight(600);
-		
-		Scene scene = new Scene(VBox);
-		
 		primaryStage.setTitle("Procrastination Application");
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+
+		root.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				xOffset = event.getSceneX();
+				yOffset = event.getSceneY();
+			}
+		});
+		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				primaryStage.setX(event.getScreenX() - xOffset);
+				primaryStage.setY(event.getScreenY() - yOffset);
+			}
+		});
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	
+
 	}
 
 	public void start() {
