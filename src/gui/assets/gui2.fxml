@@ -61,7 +61,7 @@
                               </DropShadow>
                            </effect>
                         </TextField>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Description..." style=".content -fx-background-color: #424144; -fx-border-color: #424144;" stylesheets="@guiCSS.css">
+                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Description..." style=".content -fx-background-color: #424144; -fx-border-color: #424144;" stylesheets="@assets/guiCSS.css">
                            <effect>
                               <DropShadow>
                                  <color>

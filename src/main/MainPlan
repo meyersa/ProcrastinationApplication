@@ -1,3 +1,11 @@
-main should also have sorting class 
-- Takes the object as input with the parameter, ie date 
-- notification class to send notifications 
+- Setup backend Unix TIME alert system 
+- Notification service 
+- Program exit? How to close all GUIs/Stop program 
+- Sort Map by unix time?  (Omitting other sorting stuff right now cuz too much work)
+- Displaying MAPs
+	- Class that checks for existing combination of VBox/HBox and then decides to create more inside of the scrollbox
+	- Rewrite entirely with manual JavaFX instead of FXML? -- Or figure out how to use controller 
+Done
+- Event Objects 
+- Error GUI/service
+- Local storage/saving/reading/checking

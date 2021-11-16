@@ -112,7 +112,6 @@ public class LocalStorage {
 				fw.write(map.get(eventID).toString() + "\n");
 				
 			} catch (Exception e) {
-				Error.createErrorLog(e);
 				System.out.println(e);
 
 			}

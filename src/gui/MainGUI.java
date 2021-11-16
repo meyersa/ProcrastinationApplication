@@ -17,7 +17,7 @@ public class MainGUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getResource("gui2.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("assets/gui2.fxml"));
 
 		Scene scene = new Scene(root);
 
@@ -47,5 +47,10 @@ public class MainGUI extends Application {
 	public void start() {
 		launch();
 
+	}
+	
+	public void stop() {
+		
+		
 	}
 }
