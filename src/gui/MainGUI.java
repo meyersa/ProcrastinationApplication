@@ -1,6 +1,10 @@
 package gui;
 
 import javafx.event.ActionEvent;
+
+import java.util.Map;
+
+import events.Event;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainGUI extends Application {
+	private Map<Integer, Event> allEvents;
+	
 	private double xOffset = 0;
 	private double yOffset = 0;
 
@@ -44,13 +50,26 @@ public class MainGUI extends Application {
 
 	}
 
-	public void start() {
+	public void start(Map<Integer, Event> allEvents) {
+		this.allEvents = allEvents;
+		
 		launch();
 
 	}
 	
-	public void stop() {
-		
+	public void end() {
+		try {
+			stop();
+			
+		} catch (Exception e) {
+			ErrorGUI.display(e);
+			
+		}	
+	}
+	
+	private void updateGUI() {
+		// Make a public Scrollpane, with a HBox, divided into VBox's 
+		// Check to see how many VBox's there are, for the last one (Greatest num), check to see how many 
 		
 	}
 }

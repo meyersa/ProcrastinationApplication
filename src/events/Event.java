@@ -5,6 +5,6 @@ public interface Event {
 
 	public String getDescription();
 
-	public int getTime();
+	public long getTime();
 
 }

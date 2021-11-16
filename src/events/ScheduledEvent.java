@@ -1,23 +1,23 @@
 package events;
 
-public class ScheduledEvent implements Event {
+public class ScheduledEvent implements Event, Comparable<Event> {
 	
 	private String eventName;
 	private String eventDescription;
-	private int eventTime;
+	private long eventTime;
 	
-	private int eventOffHold;
+	private long eventOffHold;
 	// UNIX Time when the event is scheduled for 
 	
 	public ScheduledEvent() {
 		eventName = null;
 		eventDescription = null;
-		eventTime = -1;
+		eventTime = System.currentTimeMillis();
 		eventOffHold = -1;
 		
 	}
 	
-	public ScheduledEvent(String eventName, String eventDescription, int eventTime, int eventOffHold) {
+	public ScheduledEvent(String eventName, String eventDescription, long eventTime, long eventOffHold) {
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventTime = eventTime;
@@ -35,12 +35,12 @@ public class ScheduledEvent implements Event {
 	
 	}
 
-	public int getTime() {
+	public long getTime() {
 		return eventTime;
 	
 	}
 
-	public int getOffHold() {
+	public long getOffHold() {
 		return eventOffHold;
 		
 	}
@@ -49,4 +49,21 @@ public class ScheduledEvent implements Event {
 		return "ScheduledEvent," + eventName + "," + eventDescription + "," + eventTime + "," + eventOffHold;
 		
 	}
+
+	@Override
+	public int compareTo(Event o) {
+		
+		/*
+		 * If the object we are comparing to also is a ScheduledEvent, then we can compare the times
+		 * If not, then it is just a normal event so this takes priority
+		 */
+		
+		if (o instanceof ScheduledEvent) {
+			return Double.valueOf(eventOffHold).compareTo((double) ((ScheduledEvent) o).getOffHold());
+			
+		} else {
+			return 1;
+			
+		}
+	}	
 }

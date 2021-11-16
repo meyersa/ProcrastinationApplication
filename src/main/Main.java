@@ -2,18 +2,19 @@ package main;
 
 import gui.ErrorGUI;
 import gui.MainGUI;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import events.*;
 
 public class Main {
 	private Map<Integer, Event> allEvents;
+	private MainGUI MainGUI;
 
 	public static void main(String[] args) {
 		Main Application = new Main();
-
+		
+		Application.show();
+		
 	}
 
 	private Main() {
@@ -24,22 +25,50 @@ public class Main {
 
 		allEvents = new HashMap<Integer, Event>();
 
-		MainGUI MainGUI = new MainGUI();
-
-		System.out.println("Success");
-
-		try {
-			MainGUI.start();
-
-		} catch (Exception e) {
-			System.err.println("Fatal. Failed to start application.");
-			e.printStackTrace();
-
-		}
 	}
 
-	private void exit() {
-		LocalStorage.writeCache(allEvents);
+	public void syncEvents(Map<Integer, Event> allEvents) {
+		
+		/*
+		 * For inevitably when the Map gets out of sync, now it can be restored for storage
+		 */
+		
+		this.allEvents = allEvents;
 		
 	}
+	
+	public void exit() {
+		
+		// Pass back through allEvents?? 
+		
+		/*
+		 * On exit, writes allEvents to cache
+		 * Closes GUI
+		 */
+		
+		LocalStorage.writeCache(allEvents);
+
+		MainGUI.end();
+		
+	}
+
+	private void show() {
+		
+		/*
+		 * Instantiates the MainGUI class
+		 * Calls the MainGUI start event, which calls launch
+		 * Also passes through the allEvents map in order for them to be displayed/tracked
+		 */
+		
+		MainGUI = new MainGUI();
+
+		try {
+			MainGUI.start(allEvents);
+
+		} catch (Exception e) {
+			ErrorGUI.display(e);
+
+		}		
+	}
+	
 }
