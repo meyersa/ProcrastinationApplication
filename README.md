@@ -24,3 +24,9 @@ GUI based program that lets you create "events" that you need to be reminded abo
 - Event Objects 
 - Error GUI/service
 - Local storage/saving/reading/checking
+
+## Continuity
+- Colors
+	- Grey: #424144
+	- Pink: #e945ff
+	- White (Font): #ccc2cc

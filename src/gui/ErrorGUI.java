@@ -29,7 +29,6 @@ public class ErrorGUI extends Application {
 		textStackTrace.setStyle("-fx-font-size: 20");
 		textStackTrace.setWrappingWidth(450);
 		
-		
 		VBox VBox = new VBox(textError, textStackTrace);
 			
 		VBox.setAlignment(Pos.TOP_CENTER);
