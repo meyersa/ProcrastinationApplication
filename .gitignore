@@ -1,6 +1,2 @@
 /bin
 /Cache/*
-/.settings
-.classpath
-.project
-.org.eclipse.jdt.core.prefs
