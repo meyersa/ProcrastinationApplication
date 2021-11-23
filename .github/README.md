@@ -17,10 +17,10 @@ GUI based program that lets you create "events" that you need to be reminded abo
 	- static public method that changes the static TextField with .set()
 - Time Input Calender instead of UNIX Time
 	- Input Time/Date then convert to UNIX Time? 
+- Add a button to clear current fields, inline with submit perhaps
 
 ## Bug 
 - Check for Newlines
-- Blue File after click
 
 ## Abstract - Future Plan
 - UI Showing manager for multiple UIs to be open 
