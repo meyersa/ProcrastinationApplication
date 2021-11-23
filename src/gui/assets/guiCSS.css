@@ -1,7 +1,25 @@
 .text-area *.content {
     -fx-background-color: #424144;
-}
 
+}
 .text-area {
-    -fx-focus-color:  #424144;
+    -fx-focus-color: #424144;
+
+}
+#Menu .label {
+    -fx-text-fill: #ebe1eb;
+	
+}
+#MenuItem {
+	-fx-background-color: #424144;
+	-fx-border-color: #424144;
+	
+}
+#Menu:hover {
+	-fx-background-color: #424144;
+	
+}
+#Menu:focused {
+	-fx-background-color: #424144;
+
 }

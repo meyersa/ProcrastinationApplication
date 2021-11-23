@@ -6,7 +6,7 @@ import gui.ErrorGUI;
 
 public class Error {
 	public static void createErrorGUI(Exception e) {		
-		ErrorGUI.display(e);
-		
+		//ErrorGUI.display(e);
+		e.printStackTrace();
 	}
 }

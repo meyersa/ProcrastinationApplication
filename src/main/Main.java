@@ -21,10 +21,10 @@ public class Main {
 		if (LocalStorage.checkForCache()) {
 			allEvents = LocalStorage.readCache();
 
+		} else {
+			allEvents = new HashMap<Integer, Event>();
+		
 		}
-
-		allEvents = new HashMap<Integer, Event>();
-
 	}
 
 	public void syncEvents(Map<Integer, Event> allEvents) {
@@ -61,14 +61,13 @@ public class Main {
 		 */
 		
 		MainGUI = new MainGUI();
-
+				
 		try {
 			MainGUI.start(allEvents);
 
 		} catch (Exception e) {
-			ErrorGUI.display(e);
-
+			Error.createErrorGUI(e);
+			
 		}		
 	}
-	
 }
