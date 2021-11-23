@@ -1,3 +1,10 @@
+/*
+* August Meyers
+* ProcastinationApplication
+* Event.java
+* Event Interface
+*/
+
 package events;
 
 public interface Event {

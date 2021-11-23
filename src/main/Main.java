@@ -13,6 +13,8 @@ public class Main {
 	public static void main(String[] args) {
 		Main Application = new Main();
 		
+		LocalStorage.enforceCache();
+		
 		Application.show();
 		
 	}
@@ -34,21 +36,6 @@ public class Main {
 		 */
 		
 		this.allEvents = allEvents;
-		
-	}
-	
-	public void exit() {
-		
-		// Pass back through allEvents?? 
-		
-		/*
-		 * On exit, writes allEvents to cache
-		 * Closes GUI
-		 */
-		
-		LocalStorage.writeCache(allEvents);
-
-		MainGUI.end();
 		
 	}
 

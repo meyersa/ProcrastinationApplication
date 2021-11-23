@@ -1,3 +1,10 @@
+/*
+* August Meyers
+* ProcastinationApplication
+* ScheduledEvent.java
+* Scheduled Event Object File
+*/
+
 package events;
 
 public class ScheduledEvent implements Event, Comparable<Event> {

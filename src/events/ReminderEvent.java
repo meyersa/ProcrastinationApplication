@@ -1,3 +1,10 @@
+/*
+* August Meyers
+* ProcastinationApplication
+* ReminderEvent.java
+* ReminderEvent Object File
+*/
+
 package events;
 
 public class ReminderEvent implements Event, Comparable<Event> {
