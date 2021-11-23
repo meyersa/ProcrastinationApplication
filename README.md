@@ -2,11 +2,9 @@
 The program to help you remember to do your work. Perfect for programmers who get easily distracted...
 #
 
-<br />
-
 ## About
 Created by August Meyers
-<br />
+
 GUI based program that lets you create "events" that you need to be reminded about and then proceeds to remind you about those events 
 
 ## To-do
