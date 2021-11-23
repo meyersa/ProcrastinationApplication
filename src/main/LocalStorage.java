@@ -87,6 +87,38 @@ public class LocalStorage {
 		
 	}
 	
+	public static void enforceCache() {
+		System.out.println("LocalStorage.enforceCache Method Called");
+		
+		File cacheFile = null;
+		TreeSet<String> fileList = new TreeSet<String>();
+
+		try {
+			cacheFile = new File("Cache/");
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			
+		}
+		
+		for (String cacheFileName : cacheFile.list()) {		
+			fileList.add(cacheFileName.substring(0, cacheFileName.indexOf(".")));
+			
+		}
+		
+		System.out.println("-- Before Deletion " + fileList.size() + " --");
+
+		while (fileList.size() > 5) {
+			cacheFile = new File("Cache/" + fileList.first() + ".txt");
+			cacheFile.delete();
+			fileList.remove(fileList.first());
+			
+		}
+
+		System.out.println("-- After Deletion " + fileList.size() + " --");
+		
+	}
+	
 	public static <T> void writeCache(Map<Integer, T> map) {		
 		// Check for 5 existing cache, then delete older, sort by biggest long int 
 		
