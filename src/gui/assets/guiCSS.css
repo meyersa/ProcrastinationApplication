@@ -1,25 +1,68 @@
-.text-area *.content {
-    -fx-background-color: #424144;
+/*
+* August Meyers
+* ProcastinationApplication
+* guiCSS.css
+* Defines the CSS for the Main GUI
+*/
+
+.context-menu {
+	/* The Context Menu is the drop down when you click "File" */
+    -fx-background-color:#424144 ;
+    -fx-border-width: 0.2px;
+    -fx-border-color: #424144;
+   
+}
+.menu-bar {
+	/* The Main Bar that "File" Menu sits on */
+    -fx-background-color: #424144 ;
 
 }
-.text-area {
-    -fx-focus-color: #424144;
-
-}
-#Menu .label {
+.menu-bar .label {
+	/* Label is the text, styles the "File" Name */
     -fx-text-fill: #ebe1eb;
-	
-}
-#MenuItem {
-	-fx-background-color: #424144;
-	-fx-border-color: #424144;
-	
-}
-#Menu:hover {
-	-fx-background-color: #424144;
-	
-}
-#Menu:focused {
-	-fx-background-color: #424144;
 
+}
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+	/* Styles the "File" button container */
+    -fx-background: #f082ff ;
+    -fx-text-fill: #ebe1eb;
+
+}
+.menu-item {
+	/* Styles the individual MenuItem containers */
+    -fx-text-fill: #424144;
+    -fx-background: #5b5a5e ;
+
+}
+.menu-item .label{
+	/* Styles the Text in the MenuItems */
+    -fx-text-fill: #ebe1eb;
+
+}
+.menu-item .label:hover{
+	/* Styles the MenuItems when they are hovered over/selected */
+    -fx-text-fill: #424144;
+
+}
+.split-pane-divider {
+	/* Styles the Divider between the wrapEvents and createEvents */
+   -fx-background-color: #5b5a5e;
+
+}
+.scroll-bar:horizontal {
+	/* Styles the Background of the ScrollBar at the bottom */
+    -fx-background-color: #424144;
+    
+}
+.scroll-bar:horizontal .track {
+	/* Styles the Track that the Thumb rides on */
+	-fx-background-color: #5b5a5e;
+	-fx-opacity: 0.5;
+	
+}
+.scroll-bar:horizontal .thumb {
+	/* Styles the Thumb */
+	-fx-background-color: #f082ff;
+	-fx-opacity: 0.5;
+	
 }

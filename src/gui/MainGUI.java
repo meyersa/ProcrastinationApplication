@@ -10,6 +10,7 @@ import events.Event;
 import events.ReminderEvent;
 import events.ScheduledEvent;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -18,6 +19,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -37,9 +39,13 @@ public class MainGUI extends Application {
 	static private AnchorPane errorPane; 
 	
 	static private AnchorPane wrapEvents;
+	static private SplitPane SplitPane;
+	static private AnchorPane CreateBox;
+
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		System.out.println("MainGUI.start Method Called");
 		
 		/*
 		 * MenuBar Creation
@@ -53,22 +59,18 @@ public class MainGUI extends Application {
 		MenuItem Save = new MenuItem("Save");
 		Save.setId("MenuItem");
 		Save.setOnAction(event -> Save());
-		
-		MenuItem Preferences = new MenuItem("Preferences");
-		Preferences.setId("MenuItem");
-		Preferences.setOnAction(event -> Preferences());
-		
+	
 		MenuItem About = new MenuItem("About");
 		About.setId("MenuItem");
 		About.setOnAction(event -> About());
 		
 		MenuItem Quit = new MenuItem("Quit");
 		Quit.setId("MenuItem");
-		About.setOnAction(event -> menuQuit());
+		Quit.setOnAction(event -> menuQuit());
 		
 		Menu Menu = new Menu("File");
 		Menu.setId("Menu");
-		Menu.getItems().addAll(Save, Preferences, About, Quit);
+		Menu.getItems().addAll(Save, About, Quit);
 		// TODO Fix stupid formatting
 		
 		MenuBar MenuBar = new MenuBar(Menu);	
@@ -91,10 +93,6 @@ public class MainGUI extends Application {
 		
 		// Creates the Display AnchorPane -------------------------------
 		showEvents();
-		AnchorPane.setTopAnchor(eventsDisplay, 0.0);
-		AnchorPane.setLeftAnchor(eventsDisplay, 0.0);
-		AnchorPane.setRightAnchor(eventsDisplay, 0.0);
-		AnchorPane.setBottomAnchor(eventsDisplay, 0.0);		
 		// End of Display AnchorPane -------------------------------
 		
 		
@@ -158,7 +156,7 @@ public class MainGUI extends Application {
 		createFields.setSpacing(25);
 		createFields.setPadding(new Insets(25));
 		
-		AnchorPane CreateBox = new AnchorPane(createFields);
+		CreateBox = new AnchorPane(createFields);
 		AnchorPane.setTopAnchor(createFields, 0.0);
 		AnchorPane.setLeftAnchor(createFields, 0.0);
 		AnchorPane.setRightAnchor(createFields, 0.0);
@@ -178,7 +176,7 @@ public class MainGUI extends Application {
 		 
 		
 		// Main Formatting ----------------------------------------------
-		SplitPane SplitPane = new SplitPane(wrapEvents, CreateBox);
+		SplitPane = new SplitPane(wrapEvents, CreateBox);
 		SplitPane.setStyle("-fx-background-color: #424144");
 		SplitPane.setDividerPositions(0.75);
 
@@ -187,6 +185,8 @@ public class MainGUI extends Application {
 		
 		Scene Scene = new Scene(Main, 1200, 700);
 		Scene.getStylesheets().add("file:src/gui/assets/guiCSS.css");
+		
+		primaryStage.setOnCloseRequest(event -> menuQuit());
 		
 		primaryStage.setTitle("Procrastination Application");
 		primaryStage.getIcons().add(new Image("file:src/gui/assets/logo.png"));
@@ -197,6 +197,8 @@ public class MainGUI extends Application {
 	}
 
 	private int Create() {
+		System.out.println("MainGUI.Create Method Called");
+		
 		/*
 		 * 	Takes input from creationName, creationTime, creationDescription
 		 *  Then calls the showEvents class to display again
@@ -227,25 +229,30 @@ public class MainGUI extends Application {
 		
 		showEvents();
 		
+		SplitPane.getItems().clear();
+		SplitPane.getItems().addAll(wrapEvents, CreateBox);
+		SplitPane.setDividerPositions(0.75);
+
 		return 1;
+		
 	}
 
-	private Object menuQuit() {
-		// TODO Auto-generated method stub
-		return null;
+	private void menuQuit() {
+		System.out.println("MainGUI.menuQuit Method Called");
+		end();
+		
 	}
 
-	private Object About() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	private void About() {
+		System.out.println("MainGUI.About Method Called");
+		
+		getHostServices().showDocument("https://github.com/meyersa/ProcrastinationApplication");
 
-	private Object Preferences() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	private void showEvents() {
+		System.out.println("MainGUI.showEvents Method Called");
+		
 		int numOfEvents = -1;
 		List<AnchorPane> events = new ArrayList<AnchorPane>();
 		List<VBox> columns = new ArrayList<VBox>();
@@ -258,8 +265,9 @@ public class MainGUI extends Application {
 			numOfEvents = 0;
 			
 		}
+				
+		System.out.println("-- Number of Events to Process " + numOfEvents + " --");
 		
-		System.out.println(numOfEvents);
 		if (numOfEvents == 0 || numOfEvents < 0) { 
 			events.add(vboxCreater());
 			
@@ -279,31 +287,29 @@ public class MainGUI extends Application {
 			columns.add(new VBox(events.get(0)));
 			
 		} else {
-			for (int i = events.size() - 1; i > -1; i--) {
-				if (i != 0 && i % 2 == 0) {
-					System.out.println("Current: " + i + " Next: " + (i - 1));
-					columns.add(new VBox(events.get(i), events.get(i - 1)));					
-					columns.get(columns.size() - 1).setSpacing(25);					
-					
-				} else if (i == 0) {
-					System.out.println("Current: " + i);
-					columns.add(new VBox(events.get(i)));
-					
-				}
+			for(int i = events.size() - 1; i >= 1; i-=2){
+			    columns.add(new VBox(events.get(i), events.get(i-1)));
+			    
+			}
+			
+			if(events.size() % 2 != 0) {
+			    columns.add(new VBox(events.get(0)));
+			    
 			}
 		}
 				
 		HBox HBox = new HBox();
 		HBox.getChildren().addAll(columns);
 		
-		System.out.println(columns.size());
+		System.out.println("-- Number of columns " + columns.size() + " --");
 		
 		HBox.setStyle("-fx-background-color: #424144");
 		HBox.setPadding(new Insets(25));
-		HBox.setPrefWidth(1200);
+		HBox.setMinWidth(1200);
 		HBox.setSpacing(25);
 		
 		eventsDisplay = new ScrollPane(HBox);
+		eventsDisplay.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		eventsDisplay.setPannable(true);
 		eventsDisplay.setFitToHeight(true);
 		eventsDisplay.setPadding(new Insets(25));
@@ -311,9 +317,16 @@ public class MainGUI extends Application {
 		
 		wrapEvents = new AnchorPane(eventsDisplay);
 		
+		AnchorPane.setTopAnchor(eventsDisplay, 0.0);
+		AnchorPane.setLeftAnchor(eventsDisplay, 0.0);
+		AnchorPane.setRightAnchor(eventsDisplay, 0.0);
+		AnchorPane.setBottomAnchor(eventsDisplay, 0.0);		
+	
 	}
 
 	private AnchorPane vboxCreater() { // Default version		
+		System.out.println("MainGUI.vboxCreator Method called");
+		
 		Text Name = new Text("Default Name");
 		Name.setFill(Color.web("#ebe1eb"));
 		Name.setStyle("-fx-font-size: 30");
@@ -337,6 +350,8 @@ public class MainGUI extends Application {
 	
 
 	private List<AnchorPane> vboxCreatorInput() {
+		System.out.println("MainGUI.vboxCreatorInput Method Called");
+		
 		List<AnchorPane> eventList = new ArrayList<AnchorPane>();
 		Event currentEvent;
 		
@@ -394,11 +409,15 @@ public class MainGUI extends Application {
 			
 		}
 		
+		System.out.println("-- New eventList size " + eventList.size()+ " --");
+		
 		return eventList;
 		
 	}
 
 	public void start(Map<Integer, Event> allEvents) {
+		System.out.println("MainGUI.start Method Called");
+		
 		this.allEvents = allEvents;
 		
 		launch();
@@ -406,8 +425,13 @@ public class MainGUI extends Application {
 	}
 	
 	public void end() {
+		System.out.println("MainGUI.end Method Called");
+		
+		Save();
+
 		try {
-			stop();
+			Platform.exit();
+			System.exit(0);
 			
 		} catch (Exception e) {
 			ErrorGUI.display(e);
@@ -416,7 +440,8 @@ public class MainGUI extends Application {
 	}
 	
 	private void Save() {
+		System.out.println("MainGUI.Save Method Called");
 		main.LocalStorage.writeCache(allEvents);
-		
+
 	}
 }
