@@ -12,28 +12,37 @@ GUI based program that lets you create "events" that you need to be reminded abo
 ## To-do
 - **Setup backend Unix TIME alert system** - Take a map<Integer, Event> input and create timers
 - **Notification service** - Take an Event input, display with that 
-- Program exit? How to close all GUIs/Stop program/Save current Map (Call this in MenuItem)
-- Preferences method for MenuItem
-- About method for MenuItem
 - Sort Map by unix time?  (Omitting other sorting stuff right now cuz too much work)
-- UI ActionListeners
-- Figure out a solution for updating the static map -- Should be able to change Static variable
-- UI Showing manager for multiple UIs to be open 
-
-## Done
-- Event Objects 
-- Error GUI/service
-- Local storage/saving/reading/checking
-- Main GUI Layout
+- Display all errors in ErrorPane? 
+	- static public method that changes the static TextField with .set()
+- Time Input Calender instead of UNIX Time
+	- Input Time/Date then convert to UNIX Time? 
 
 ## Bug 
 - Check for Newlines
 - Blue File after click
 
+## Abstract - Future Plan
+- UI Showing manager for multiple UIs to be open 
+	- Can the other UIs just quit the main One? 
+	- if not, could animate between them
+- Move some of the classes out of MainGUI
+	- Or perhaps make a scene manager, and have MainGUI just draw that and call classes inside of MainGUI
+	- CreateEvent Anchor stuff outside of MainGUI class though
+- With new Event manager
+	- Add back preferences MenuItem/Create Preferences Menu
+		- Num of events to display? 
+		- Default Size? 
+		- Where to store default events? 
+		- Etc
+	- Re-enable Fatal Error Menu
+
 ## Continuity
 - Colors
 	- Grey: #424144
+	- LighterGrey: #5b5a5e
 	- Pink: #e945ff
+	- LighterPink: #f082ff
 	- White (Font): #ccc2cc
 	- Brighter White: #ebe1eb
 	- Red: #ff6961
