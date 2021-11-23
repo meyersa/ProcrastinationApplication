@@ -29,11 +29,18 @@ import javafx.stage.Stage;
 
 public class MainGUI extends Application {
 	static private Map<Integer, Event> allEvents;
-	private ScrollPane eventsDisplay;
+	static private ScrollPane eventsDisplay;
 
+	static private TextField creationName;
+	static private TextField creationTime;
+	static private TextField creationDescription;
+	static private AnchorPane errorPane; 
+	
+	static private AnchorPane wrapEvents;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		
 		/*
 		 * MenuBar Creation
 		 * Save - Calls the local save class with the current allEvents Map
@@ -45,15 +52,19 @@ public class MainGUI extends Application {
 		// Create Menu --------------------------------------------------
 		MenuItem Save = new MenuItem("Save");
 		Save.setId("MenuItem");
+		Save.setOnAction(event -> Save());
 		
 		MenuItem Preferences = new MenuItem("Preferences");
 		Preferences.setId("MenuItem");
+		Preferences.setOnAction(event -> Preferences());
 		
 		MenuItem About = new MenuItem("About");
 		About.setId("MenuItem");
+		About.setOnAction(event -> About());
 		
 		MenuItem Quit = new MenuItem("Quit");
 		Quit.setId("MenuItem");
+		About.setOnAction(event -> menuQuit());
 		
 		Menu Menu = new Menu("File");
 		Menu.setId("Menu");
@@ -80,7 +91,6 @@ public class MainGUI extends Application {
 		
 		// Creates the Display AnchorPane -------------------------------
 		showEvents();
-		AnchorPane wrapEvents = new AnchorPane(eventsDisplay);
 		AnchorPane.setTopAnchor(eventsDisplay, 0.0);
 		AnchorPane.setLeftAnchor(eventsDisplay, 0.0);
 		AnchorPane.setRightAnchor(eventsDisplay, 0.0);
@@ -104,30 +114,46 @@ public class MainGUI extends Application {
 		creationText.setFill(Color.web("#ebe1eb"));
 		creationText.setStyle("-fx-font-size: 30");
 		
-		TextField creationName = new TextField();
+		creationName = new TextField();
 		creationName.setPromptText("Name of Event");
 		creationName.setStyle("-fx-background-color: #424144; -fx-border-color: #ebe1eb; -fx-font-size: 15; -fx-text-fill: #ebe1eb");
 
-		TextField creationTime = new TextField();
+		creationTime = new TextField();
 		creationTime.setPromptText("Time of Event, in UNIX Time");
 		creationTime.setStyle("-fx-background-color: #424144; -fx-border-color: #ebe1eb; -fx-font-size: 15; -fx-text-fill: #ebe1eb");
 
-		TextField creationDescription = new TextField();
+		creationDescription = new TextField();
 		creationDescription.setPromptText("Description of Event");
 		creationDescription.setStyle("-fx-background-color: #424144; -fx-border-color: #ebe1eb; -fx-font-size: 15; -fx-text-fill: #ebe1eb");
 
 		Button creationButton = new Button("Create");
 		creationButton.setTextFill(Color.web("#ebe1eb"));
 		creationButton.setStyle("-fx-background-color: #424144; -fx-border-color: #ebe1eb; -fx-font-size: 15");
-
+		creationButton.setOnAction(event -> Create());
+		
 		TextField creationBlankField = new TextField();
 		creationBlankField.setId("creationBlankField");
 		creationBlankField.setMinWidth(300);
 		creationBlankField.setMaxHeight(0.01);
 		creationBlankField.setStyle("-fx-background-color: #424144; -fx-text-fill: #424144");
+		
+		Text errorField = new Text("Input Invalid. Please try again");
+		errorField.setFill(Color.web("#ebe1eb"));
+		errorField.setStyle("-fx-font-size: 15;");
+		
+		errorPane = new AnchorPane(errorField);
+		errorPane.setStyle("-fx-background-color: #ff6961");
+		errorPane.setPadding(new Insets(10));
+		errorPane.setVisible(false);
+		
+		AnchorPane.setTopAnchor(errorField, 0.0);
+		AnchorPane.setLeftAnchor(errorField, 0.0);
+		AnchorPane.setRightAnchor(errorField, 0.0);
+		AnchorPane.setBottomAnchor(errorField, 0.0);	
+		
 		creationBlankField.setPadding(new Insets(0));
 		
-		VBox createFields = new VBox(creationBlankField, creationText, creationName, creationTime, creationDescription, creationButton);
+		VBox createFields = new VBox(creationBlankField, creationText, creationName, creationTime, creationDescription, creationButton, errorPane);
 		createFields.setAlignment(Pos.TOP_CENTER);
 		createFields.setSpacing(25);
 		createFields.setPadding(new Insets(25));
@@ -149,6 +175,7 @@ public class MainGUI extends Application {
 		 * 
 		 * TODO Add a scene handler so multiple UIs can be shown 
 		 */
+		 
 		
 		// Main Formatting ----------------------------------------------
 		SplitPane SplitPane = new SplitPane(wrapEvents, CreateBox);
@@ -167,6 +194,55 @@ public class MainGUI extends Application {
 		primaryStage.show();
 		// End of Main Formatting ---------------------------------------
 
+	}
+
+	private int Create() {
+		/*
+		 * 	Takes input from creationName, creationTime, creationDescription
+		 *  Then calls the showEvents class to display again
+		 *  If it fails, show errorPane
+		 */
+		
+		if ((creationName.getText().equals("") && creationDescription.getText().equals(""))) {
+			errorPane.setVisible(true);
+			return 0;
+			
+		} else {
+			try {
+				if (creationTime.getText().equals("")) {
+					allEvents.put((int) System.currentTimeMillis(), new ReminderEvent(creationName.getText(), creationDescription.getText(), System.currentTimeMillis()));
+					
+				} else {
+					allEvents.put((int) System.currentTimeMillis(), new ScheduledEvent(creationName.getText(), creationDescription.getText(), System.currentTimeMillis(), Integer.parseInt(creationTime.getText())));
+
+				}
+				
+				errorPane.setVisible(false);
+				
+			} catch (Exception e) {
+				errorPane.setVisible(true);
+
+			}			
+		}
+		
+		showEvents();
+		
+		return 1;
+	}
+
+	private Object menuQuit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object About() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Object Preferences() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private void showEvents() {
@@ -220,6 +296,8 @@ public class MainGUI extends Application {
 		HBox HBox = new HBox();
 		HBox.getChildren().addAll(columns);
 		
+		System.out.println(columns.size());
+		
 		HBox.setStyle("-fx-background-color: #424144");
 		HBox.setPadding(new Insets(25));
 		HBox.setPrefWidth(1200);
@@ -230,6 +308,8 @@ public class MainGUI extends Application {
 		eventsDisplay.setFitToHeight(true);
 		eventsDisplay.setPadding(new Insets(25));
 		eventsDisplay.setStyle("-fx-background-color: #424144");
+		
+		wrapEvents = new AnchorPane(eventsDisplay);
 		
 	}
 
@@ -333,5 +413,10 @@ public class MainGUI extends Application {
 			ErrorGUI.display(e);
 			
 		}	
+	}
+	
+	private void Save() {
+		main.LocalStorage.writeCache(allEvents);
+		
 	}
 }

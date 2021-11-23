@@ -26,9 +26,14 @@ GUI based program that lets you create "events" that you need to be reminded abo
 - Local storage/saving/reading/checking
 - Main GUI Layout
 
+## Bug 
+- Check for Newlines
+- Blue File after click
+
 ## Continuity
 - Colors
 	- Grey: #424144
 	- Pink: #e945ff
 	- White (Font): #ccc2cc
 	- Brighter White: #ebe1eb
+	- Red: #ff6961
