@@ -71,10 +71,10 @@ public class LocalStorage {
 			currentLine = sc.nextLine().split(",");
 					
 			if (currentLine[0].equals("ReminderEvent")) {
-				map.put(Integer.valueOf(currentLine[3]), new ReminderEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3])));
+				map.put((int) Long.parseLong(currentLine[3]), new ReminderEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3])));
 				
 			} else if (currentLine[0].equals("ScheduledEvent")) {
-				map.put(Integer.valueOf(currentLine[3]), new ScheduledEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3]), Long.parseLong(currentLine[4])));
+				map.put((int) Long.parseLong(currentLine[3]), new ScheduledEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3]), Long.parseLong(currentLine[4])));
 
 			}
 			
