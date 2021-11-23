@@ -7,8 +7,6 @@ Created by August Meyers
 
 GUI based program that lets you create "events" that you need to be reminded about and then proceeds to remind you about those events 
 
-![Screenshot](https://github.com/meyersa/ProcrastinationApplication/blob/master/assets/ProcrastinationApplicationGUI.png)
-
 ## To-do
 - **Setup backend Unix TIME alert system** - Take a map<Integer, Event> input and create timers
 - **Notification service** - Take an Event input, display with that 
