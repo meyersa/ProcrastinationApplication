@@ -73,17 +73,17 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 
 	@Override
 	public int compareTo(Event o) {
-		
 		/*
 		 * If the object we are comparing to also is a ScheduledEvent, then we can compare the times
 		 * If not, then it is just a normal event so this takes priority
-		 */
+		 */		
 		
-		if (o instanceof ScheduledEvent) {
-			return Double.valueOf(eventOffHold).compareTo((double) ((ScheduledEvent) o).getOffHold());
+		if (o instanceof ReminderEvent) {
+			return 2;
 			
-		} else {
-			return 1;
+		} 
+		else {
+			return Long.valueOf(((ScheduledEvent) o).getOffHold()).compareTo(Long.valueOf(eventOffHold));
 			
 		}
 	}	

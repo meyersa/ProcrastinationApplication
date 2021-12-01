@@ -22,6 +22,7 @@ public class Main {
 	private Main() {
 		if (LocalStorage.checkForCache()) {
 			allEvents = LocalStorage.readCache();
+			allEvents = Sort.sortMapByValue(allEvents);
 
 		} else {
 			allEvents = new HashMap<Integer, Event>();

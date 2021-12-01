@@ -62,17 +62,17 @@ public class ReminderEvent implements Event, Comparable<Event> {
 	
 	@Override
 	public int compareTo(Event o) {
-		
+
 		/*
 		 * If we are comparing to a ScheduledEvent, then we should return 0 since this is not as important
 		 * But if it is another ReminderEvent, then we should compare the Titles alphabetically 
 		 */
 
-		if (!(o instanceof ReminderEvent)) {
-			return 0;
+		if (o instanceof ScheduledEvent) {
+			return -1;
 			
 		} else { 
-			return eventName.compareTo(o.getName());
+			return o.getName().toLowerCase().compareTo(eventName.toLowerCase());
 			
 		}
 	}

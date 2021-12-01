@@ -7,7 +7,7 @@
 
 package events;
 
-public interface Event {
+public interface Event extends Comparable<Event> {
 	public String getName();
 	
 	public String getDescription();
