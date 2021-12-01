@@ -56,6 +56,6 @@ public class Main {
 		} catch (Exception e) {
 			Error.createErrorGUI(e);
 			
-		}		
+		}
 	}
 }

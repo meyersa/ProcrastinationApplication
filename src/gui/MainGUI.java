@@ -37,6 +37,7 @@ public class MainGUI extends Application {
 	static private TextField creationTime;
 	static private TextField creationDescription;
 	static private AnchorPane errorPane; 
+	static private Text errorField;
 	
 	static private AnchorPane wrapEvents;
 	static private SplitPane SplitPane;
@@ -135,7 +136,7 @@ public class MainGUI extends Application {
 		creationBlankField.setMaxHeight(0.01);
 		creationBlankField.setStyle("-fx-background-color: #424144; -fx-text-fill: #424144");
 		
-		Text errorField = new Text("Input Invalid. Please try again");
+		errorField = new Text("Input Invalid. Please try again");
 		errorField.setFill(Color.web("#ebe1eb"));
 		errorField.setStyle("-fx-font-size: 15;");
 		
@@ -445,5 +446,17 @@ public class MainGUI extends Application {
 		System.out.println("MainGUI.Save Method Called");
 		main.LocalStorage.writeCache(allEvents);
 
+	}
+	
+	public static void displayError(String errorText) {
+		errorField.setText(errorText);
+		errorPane.setVisible(true);
+		
+	}
+	
+	public static void hideError() { 
+		errorPane.setVisible(false);
+		errorField.setText("Input Invalid. Please try again");
+		
 	}
 }

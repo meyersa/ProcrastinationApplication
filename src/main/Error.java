@@ -3,10 +3,11 @@
 package main;
 
 import gui.ErrorGUI;
+import gui.MainGUI;
 
 public class Error {
 	public static void createErrorGUI(Exception e) {		
-		//ErrorGUI.display(e);
-		e.printStackTrace();
+		MainGUI.displayError(e.toString());
+	
 	}
 }
