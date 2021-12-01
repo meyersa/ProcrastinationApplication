@@ -12,15 +12,12 @@ GUI based program that lets you create "events" that you need to be reminded abo
 ## To-do
 - **Setup backend Unix TIME alert system** - Take a map<Integer, Event> input and create timers
 - **Notification service** - Take an Event input, display with that 
-- Sort Map by unix time?  (Omitting other sorting stuff right now cuz too much work)
 - Display all errors in ErrorPane? 
 	- static public method that changes the static TextField with .set()
 - Time Input Calender instead of UNIX Time
 	- Input Time/Date then convert to UNIX Time? 
 - Add a button to clear current fields, inline with submit perhaps
-
-## Bug 
-- Check for Newlines
+- Stuff on OneNote, quite a bit left
 
 ## Abstract - Future Plan
 - UI Showing manager for multiple UIs to be open 
