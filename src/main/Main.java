@@ -16,7 +16,7 @@ public class Main {
 		LocalStorage.enforceCache();
 		
 		Application.show();
-		
+			
 	}
 
 	private Main() {
