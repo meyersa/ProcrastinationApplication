@@ -257,6 +257,8 @@ public class MainGUI extends Application {
 		List<AnchorPane> events = new ArrayList<AnchorPane>();
 		List<VBox> columns = new ArrayList<VBox>();
 		
+		allEvents = main.Sort.sortMapByValue(allEvents);
+		
 		try {
 			numOfEvents = allEvents.size();
 			
