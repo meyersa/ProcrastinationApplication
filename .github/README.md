@@ -12,9 +12,6 @@ GUI based program that lets you create "events" that you need to be reminded abo
 ## To-do
 - **Setup backend Unix TIME alert system** - Take a map<Integer, Event> input and create timers
 - **Notification service** - Take an Event input, display with that 
-- Time Input Calender instead of UNIX Time
-	- Input Time/Date then convert to UNIX Time? 
-- Add a button to clear current fields, inline with submit perhaps
 - Stuff on OneNote, quite a bit left
 
 ## Abstract - Future Plan
@@ -31,6 +28,8 @@ GUI based program that lets you create "events" that you need to be reminded abo
 		- Where to store default events? 
 		- Etc
 	- Re-enable Fatal Error Menu
+- Time Input Calender instead of UNIX Time
+	- Input Time/Date then convert to UNIX Time? 
 
 ## Continuity
 - Colors

@@ -130,6 +130,15 @@ public class MainGUI extends Application {
 		creationButton.setStyle("-fx-background-color: #424144; -fx-border-color: #ebe1eb; -fx-font-size: 15");
 		creationButton.setOnAction(event -> Create());
 		
+		Button clearButton = new Button("Clear");
+		clearButton.setTextFill(Color.web("#ebe1eb"));
+		clearButton.setStyle("-fx-background-color: #424144; -fx-border-color: #ebe1eb; -fx-font-size: 15");
+		clearButton.setOnAction(event -> Clear());
+		
+		HBox buttonRow = new HBox(creationButton, clearButton);
+		buttonRow.setSpacing(25);
+		buttonRow.setAlignment(Pos.CENTER);
+		
 		TextField creationBlankField = new TextField();
 		creationBlankField.setId("creationBlankField");
 		creationBlankField.setMinWidth(300);
@@ -152,7 +161,7 @@ public class MainGUI extends Application {
 		
 		creationBlankField.setPadding(new Insets(0));
 		
-		VBox createFields = new VBox(creationBlankField, creationText, creationName, creationTime, creationDescription, creationButton, errorPane);
+		VBox createFields = new VBox(creationBlankField, creationText, creationName, creationTime, creationDescription, buttonRow, errorPane);
 		createFields.setAlignment(Pos.TOP_CENTER);
 		createFields.setSpacing(25);
 		createFields.setPadding(new Insets(25));
@@ -195,6 +204,15 @@ public class MainGUI extends Application {
 		primaryStage.show();
 		// End of Main Formatting ---------------------------------------
 
+	}
+
+	private void Clear() {
+		System.out.println("MainGUI.Create Method Called");
+		
+		creationName.clear();
+		creationDescription.clear();
+		creationTime.clear();
+	
 	}
 
 	private int Create() {
