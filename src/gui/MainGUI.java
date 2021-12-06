@@ -201,7 +201,7 @@ public class MainGUI extends Application {
 		VBox.setVgrow(SplitPane, Priority.ALWAYS);
 
 		Scene Scene = new Scene(Main, 1200, 700);
-		Scene.getStylesheets().add("file:src/gui/assets/guiCSS.css");
+		Scene.getStylesheets().add("url:https://raw.githubusercontent.com/meyersa/ProcrastinationApplication/master/src/gui/assets/guiCSS.css");
 
 		primaryStage.setOnCloseRequest(event -> menuQuit());
 
@@ -339,7 +339,7 @@ public class MainGUI extends Application {
 			// Reinitializes the notifications as well on change
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.writeLog(e.toString());
 			// If allEvents is zero these may throw
 
 		}

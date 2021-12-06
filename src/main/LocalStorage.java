@@ -60,7 +60,7 @@ public class LocalStorage {
 				
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.writeLog(e.toString());
 			
 		}
 		
@@ -214,7 +214,7 @@ public class LocalStorage {
 			fw.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.writeLog(e.toString());
 		
 		}
 		// Writes to file 
