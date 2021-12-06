@@ -1,23 +1,29 @@
 /*
+* Procrastination Application
 * August Meyers
-* ProcastinationApplication
 * ReminderEvent.java
-* ReminderEvent Object File
+* ReminderEvent Object
 */
 
 package events;
 
-public class ReminderEvent implements Event, Comparable<Event> {
-
 	/*
-	 * Implements Event interface that provides the mandatory Methods
-	 * Implements Comparable to ensure that it is able to be compared 
+	 * ReminderEvent Class
+	 * For making ReminderEvent object
+	 * Implements both Event and Comparable
 	 */
+
+public class ReminderEvent implements Event, Comparable<Event> {
 	
 	private String eventName;
 	private String eventDescription;
 	private long eventTime;
 	// Private instance variables 
+	
+	/*
+	 * Constructor Scheduled Event
+	 * Default constructor sets default options
+	 */
 	
 	public ReminderEvent() {
 		eventName = null;
@@ -25,7 +31,15 @@ public class ReminderEvent implements Event, Comparable<Event> {
 		eventTime = System.currentTimeMillis();
 		
 	}
-	// Default constructor that just sets values generically 
+
+	/*
+	 * Constructor Overloaded ReminderEvent
+	 * Creates event with included options
+	 * 
+	 * @param eventName String name of the event
+	 * @param eventDescription String description of event
+	 * @param eventTime Long time of when event was created 
+	 */
 	
 	public ReminderEvent(String eventName, String eventDescription, Long eventTime) {
 		this.eventName = eventName;
@@ -33,32 +47,58 @@ public class ReminderEvent implements Event, Comparable<Event> {
 		this.eventTime = eventTime;
 		
 	}
-	// Overloaded constructor for initializing the event
+
+	/*
+	 * String Method getName
+	 * 
+	 * @return String name of event
+	 */
 	
 	public String getName() {
 		return eventName;
 
 	}
-	// Get method for returning the name of the event
+
+	/*
+	 * String Method getDescription
+	 * 
+	 * @return String description of event
+	 */
 	
 	public String getDescription() {
 		return eventDescription;
 
 	}
-	// Get method for returning the description of the event
+	
+	/*
+	 * Long Method getTime
+	 * 
+	 * @return Long time of event creation
+	 */
 	
 	public long getTime() {
 		return eventTime;
 
 	}
-	// Get method for returning the time the event was created
+	
+	/*
+	 * String Method toString
+	 * 
+	 * @return Formatted output of all event information 
+	 */
 	
 	public String toString() {
 		return "ReminderEvent," + eventName + "," + eventDescription + "," + eventTime;
 		
 	}
-	// toString method to return a formatted String of this Object
-	// Particularly, we use this for storing the Object
+	
+	/*
+	 * int Method compareTo
+	 * Method that implements Comparable in order to make the event comparable
+	 * 
+	 * @param Event that is being compared to
+	 * @return int positive or negative denouncing sorting position
+	 */
 	
 	@Override
 	public int compareTo(Event o) {

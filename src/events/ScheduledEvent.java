@@ -1,18 +1,19 @@
 /*
-* August Meyers
-* ProcastinationApplication
-* ScheduledEvent.java
-* Scheduled Event Object File
-*/
+ * Procrastination Application
+ * August Meyers
+ * ScheduledEvent.java
+ * ScheduledEvent Object
+ */
 
 package events;
 
-public class ScheduledEvent implements Event, Comparable<Event> {
-	
 	/*
-	 * Implements Event interface that provides the mandatory Methods
-	 * Implements Comparable to ensure that it is able to be compared 
+	 * ScheduledEvent Class
+	 * For making ScheduledEvent object
+	 * Implements both Event and Comparable
 	 */
+
+public class ScheduledEvent implements Event, Comparable<Event> {
 	
 	private String eventName;
 	private String eventDescription;
@@ -22,6 +23,11 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 	private long eventOffHold;
 	// UNIX Time when the event is scheduled for 
 	
+	/*
+	 * Constructor Scheduled Event
+	 * Default constructor sets default options 
+	 */
+	
 	public ScheduledEvent() {
 		eventName = null;
 		eventDescription = null;
@@ -29,8 +35,17 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 		eventOffHold = -1;
 		
 	}
-	// Default constructor that just sets values generically 
 
+	/*
+	 * Constructor Overloaded ScheduledEvent
+	 * Creates event with included options 
+	 * 
+	 * @param eventName String name of the event
+	 * @param eventDescription String description of event
+	 * @param eventTime Long time of when event was created
+	 * @param eventOffHold Long time of when the event is scheduled for 
+	 */
+	
 	public ScheduledEvent(String eventName, String eventDescription, long eventTime, long eventOffHold) {
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
@@ -38,38 +53,69 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 		this.eventOffHold = eventOffHold;
 		
 	}	
-	// Overloaded constructor for initializing the event
 
+	/*
+	 * String Method getName
+	 * 
+	 * @return String name of event
+	 */
+	
 	public String getName() {
 		return eventName;
 	
 	}
-	// Get method for returning the name of the event 
+
+	/*
+	 * String Method getDescription
+	 * 
+	 * @return String description of event
+	 */
 	
 	public String getDescription() {
 		return eventDescription;
 	
 	}
-	// Get method for returning the description of the event 
+
+	/*
+	 * Long Method getTime
+	 * 
+	 * @return Long time of event creation
+	 */
 	
 	public long getTime() {
 		return eventTime;
 	
 	}
-	// Get method for returning the time the event was created
+
+	/*
+	 * Long Method getOffHold
+	 * 
+	 * @return Long time event is scheduled for 
+	 */
 	
 	public long getOffHold() {
 		return eventOffHold;
 		
 	}
-	// Get method for returning the time the event is scheduled for
+
+	/*
+	 * String Method toString
+	 * 
+	 * @return Formatted output of all event information 
+	 */
 	
 	public String toString() {
 		return "ScheduledEvent," + eventName + "," + eventDescription + "," + eventTime + "," + eventOffHold;
 		
 	}
-	// toString method to return a formatted String of this Object
-	// Particularly, we use this for storing the Object
+
+	/*
+	 * int Method compareTo
+	 * Method that implements Comparable in order to make the event comparable
+	 * 
+	 * @param Event that is being compared to
+	 * @return int positive or negative denouncing sorting position
+	 */
 
 	@Override
 	public int compareTo(Event o) {
