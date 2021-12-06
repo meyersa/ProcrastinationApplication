@@ -33,7 +33,7 @@ public class LocalStorage {
 	public static boolean checkForCache() {
 		System.out.println("LocalStorage.checkForCache Method Called");
 		
-		File cacheFolder = new File("Cache/");
+		File cacheFolder = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/");
 		String[] cacheFiles = cacheFolder.list();
 		boolean whatToReturn = false;
 		// Creates our local variables 
@@ -46,10 +46,23 @@ public class LocalStorage {
 			// If there's any files in cache directory there is cache, so it returns true 
 			
 		} catch (NullPointerException e) {
+			System.out.println("-- Cache File is empty -- ");
 			whatToReturn = false;
 			
 		}
 		// If there are no files, there is no cache, returns false 
+		
+		try {
+			if (!cacheFolder.exists()) {
+				System.out.println("-- Created Cache Folder --");
+				cacheFolder.mkdirs();
+				// If there is no local cache folder we need to make one 
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
 		
 		return whatToReturn;
 	}
@@ -73,7 +86,7 @@ public class LocalStorage {
 		// Declaring our variables 
 		
 		try {
-			cacheFile = new File("Cache/");
+			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/");
 			// Sets our cacheFile = to the entire Cache directory 
 			
 		} catch (Exception e) {
@@ -88,7 +101,7 @@ public class LocalStorage {
 		}
 		
 		try {
-			cacheFile = new File("Cache/" + sortedList.last() + ".txt");
+			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/" + sortedList.last() + ".txt");
 			sc = new Scanner(cacheFile);
 			// Sets the cacheFile to the most recent file by name
 			
@@ -131,7 +144,7 @@ public class LocalStorage {
 		TreeSet<String> fileList = new TreeSet<String>();
 
 		try {
-			cacheFile = new File("Cache/");
+			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/");
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -146,7 +159,7 @@ public class LocalStorage {
 		System.out.println("-- Before Deletion " + fileList.size() + " --");
 
 		while (fileList.size() > 5) {
-			cacheFile = new File("Cache/" + fileList.first() + ".txt");
+			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/" + fileList.first() + ".txt");
 			cacheFile.delete();
 			fileList.remove(fileList.first());
 			
@@ -174,7 +187,7 @@ public class LocalStorage {
 		// Declares our two variables 
 		
 		try {
-			cacheFile = new File("Cache/" + System.currentTimeMillis() + ".txt");
+			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/" + System.currentTimeMillis() + ".txt");
 			cacheFile.createNewFile();
 			
 			fw = new FileWriter(cacheFile);

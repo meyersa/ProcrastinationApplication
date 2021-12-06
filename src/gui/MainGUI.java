@@ -205,7 +205,7 @@ public class MainGUI extends Application {
 		primaryStage.setOnCloseRequest(event -> menuQuit());
 
 		primaryStage.setTitle("Procrastination Application");
-		primaryStage.getIcons().add(new Image("file:src/gui/assets/logo.png"));
+		primaryStage.getIcons().add(new Image("url:https://raw.githubusercontent.com/meyersa/ProcrastinationApplication/master/src/gui/assets/logo.png"));
 		primaryStage.setScene(Scene);
 		primaryStage.show();
 		// End of Main Formatting ---------------------------------------
