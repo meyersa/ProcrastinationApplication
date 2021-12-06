@@ -27,7 +27,7 @@ public class Sort {
 	 */
 	
 	public static <K, V extends Comparable<V>> Map<K, V> sortMapByValue(Map<K, V> inputMap) {
-		System.out.println("Sort.quickSort Method Called");
+		Log.writeLog("Sort.quickSort Method Called");
 
 		/*
 		 * Since all of the events are comparable they just need to be sorted By

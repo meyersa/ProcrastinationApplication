@@ -37,7 +37,7 @@ public class Notification {
 	 */
 	
 	public static void initNotification(Map<Long, Event> allEvents) {
-		System.out.println("Notification.initNotification Method Called");
+		Log.writeLog("Notification.initNotification Method Called");
 		
 		clearTimers();
 		buildTimers(allEvents);
@@ -53,7 +53,7 @@ public class Notification {
 	 */
 	
 	private static void buildTimers(Map<Long, Event> allEvents) {
-		System.out.println("Notification.buildTimers Method Called");
+		Log.writeLog("Notification.buildTimers Method Called");
 		
 		for (Event current : allEvents.values()) {
 			// Itterates through all of the events 
@@ -77,7 +77,7 @@ public class Notification {
 					}, ((ScheduledEvent) current).getOffHold() - current.getTime() - 900000);
 					
 				} catch (Exception e) {
-					System.out.println("buildTimers: " + e.toString());
+					Log.writeLog("buildTimers: " + e.toString());
 					Timers.remove(current.getTime());
 					// If it can't make the event then delete it from the list 
 					
@@ -94,7 +94,7 @@ public class Notification {
 	 */
 	
 	private static void clearTimers() {
-		System.out.println("Notification.clearTimers Method Called");
+		Log.writeLog("Notification.clearTimers Method Called");
 		
 		for (Timer current : Timers.values()) {
 			// Itterates through all of the timers
@@ -115,7 +115,7 @@ public class Notification {
 	 */
 	
 	public static void sendNotification(String notificationTitle, String notificationDescription) {
-		System.out.println("Notification.sendNotification Method Called");
+		Log.writeLog("Notification.sendNotification Method Called");
 		
 		try{
 		    SystemTray tray = SystemTray.getSystemTray();
@@ -140,7 +140,7 @@ public class Notification {
 		    // And finally displays the notification 
 		    
 		}catch(Exception e){
-			System.out.println(e.toString());
+			Log.writeLog(e.toString());
 			// Catches any exceptions, such as unable to display notification 
 			
 		}

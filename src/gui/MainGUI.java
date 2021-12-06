@@ -35,6 +35,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import main.Log;
 // All of the needed libraries for the GUI 
 
 	/**
@@ -68,7 +69,7 @@ public class MainGUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		System.out.println("MainGUI.start Method Called");
+		Log.writeLog("MainGUI.start Method Called");
 
 		// Create Menu --------------------------------------------------
 		MenuItem Save = new MenuItem("Save");
@@ -220,7 +221,7 @@ public class MainGUI extends Application {
 	 */
 	
 	private void Clear() {
-		System.out.println("MainGUI.Create Method Called");
+		Log.writeLog("MainGUI.Create Method Called");
 
 		creationName.clear();
 		creationDescription.clear();
@@ -237,7 +238,7 @@ public class MainGUI extends Application {
 	 */
 
 	private int Create() {
-		System.out.println("MainGUI.Create Method Called");
+		Log.writeLog("MainGUI.Create Method Called");
 
 		/*
 		 * Takes input from creationName, creationTime, creationDescription Then calls
@@ -295,7 +296,7 @@ public class MainGUI extends Application {
 	 */
 
 	private void menuQuit() {
-		System.out.println("MainGUI.menuQuit Method Called");
+		Log.writeLog("MainGUI.menuQuit Method Called");
 		end();
 		// Calls end method to quit
 
@@ -309,7 +310,7 @@ public class MainGUI extends Application {
 	 */
 
 	private void About() {
-		System.out.println("MainGUI.About Method Called");
+		Log.writeLog("MainGUI.About Method Called");
 
 		getHostServices().showDocument("https://github.com/meyersa/ProcrastinationApplication");
 		// Opens default web browser to the GitHub page
@@ -324,7 +325,7 @@ public class MainGUI extends Application {
 	 */
 
 	private void showEvents() {
-		System.out.println("MainGUI.showEvents Method Called");
+		Log.writeLog("MainGUI.showEvents Method Called");
 
 		int numOfEvents = -1;
 		List<AnchorPane> events = new ArrayList<AnchorPane>();
@@ -348,13 +349,13 @@ public class MainGUI extends Application {
 			// if allEvents is 0 this will throw 
 			
 		} catch (Exception e) {
-			System.out.println("Unable to get size of event map. " + e);
+			Log.writeLog("Unable to get size of event map. " + e);
 			numOfEvents = 0;
 			// Defaults to 0 to process 
 			
 		}
 
-		System.out.println("-- Number of Events to Process " + numOfEvents + " --");
+		Log.writeLog("-- Number of Events to Process " + numOfEvents + " --");
 
 		if (numOfEvents == 0 || numOfEvents < 0) {
 			events.add(vboxCreater());
@@ -393,7 +394,7 @@ public class MainGUI extends Application {
 		HBox HBox = new HBox();
 		HBox.getChildren().addAll(columns);
 
-		System.out.println("-- Number of columns " + columns.size() + " --");
+		Log.writeLog("-- Number of columns " + columns.size() + " --");
 
 		HBox.setStyle("-fx-background-color: #424144");
 		HBox.setPadding(new Insets(25));
@@ -426,7 +427,7 @@ public class MainGUI extends Application {
 	 */
 	
 	private AnchorPane vboxCreater() { // Default version
-		System.out.println("MainGUI.vboxCreator Method called");
+		Log.writeLog("MainGUI.vboxCreator Method called");
 
 		Text Name = new Text("Default Name");
 		Name.setFill(Color.web("#ebe1eb"));
@@ -458,7 +459,7 @@ public class MainGUI extends Application {
 	 */
 	
 	private List<AnchorPane> vboxCreatorInput() {
-		System.out.println("MainGUI.vboxCreatorInput Method Called");
+		Log.writeLog("MainGUI.vboxCreatorInput Method Called");
 
 		List<AnchorPane> eventList = new ArrayList<AnchorPane>();
 		Event currentEvent;
@@ -553,7 +554,7 @@ public class MainGUI extends Application {
 
 		}
 
-		System.out.println("-- New eventList size " + eventList.size() + " --");
+		Log.writeLog("-- New eventList size " + eventList.size() + " --");
 
 		return eventList;
 
@@ -568,7 +569,7 @@ public class MainGUI extends Application {
 	 */
 	
 	private void Delete(Event currentEvent) {
-		System.out.println("MainGUI.Delete Method Called");
+		Log.writeLog("MainGUI.Delete Method Called");
 		
 		allEvents.remove(currentEvent.getTime());
 		// Removes the event from the list 
@@ -592,7 +593,7 @@ public class MainGUI extends Application {
 	 */
 	
 	public void start(Map<Long, Event> allEvents) {
-		System.out.println("MainGUI.start Method Called");
+		Log.writeLog("MainGUI.start Method Called");
 
 		this.allEvents = allEvents;
 
@@ -608,7 +609,7 @@ public class MainGUI extends Application {
 	 */
 	
 	public void end() {
-		System.out.println("MainGUI.end Method Called");
+		Log.writeLog("MainGUI.end Method Called");
 
 		Save();
 		// Saves the current method
@@ -619,7 +620,7 @@ public class MainGUI extends Application {
 			// Exits GUI and Java process
 			
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			Log.writeLog(e.toString());
 
 		}
 	}
@@ -632,7 +633,7 @@ public class MainGUI extends Application {
 	 */
 	
 	private void Save() {
-		System.out.println("MainGUI.Save Method Called");
+		Log.writeLog("MainGUI.Save Method Called");
 		main.LocalStorage.writeCache(allEvents);
 		// Writes events to cache
 		
@@ -647,7 +648,7 @@ public class MainGUI extends Application {
 	 */
 	
 	public static void displayError(String errorText) {
-		System.out.println("MainGUI.displayError Method Called");
+		Log.writeLog("MainGUI.displayError Method Called");
 		
 		errorField.setText(errorText);
 		errorPane.setVisible(true);

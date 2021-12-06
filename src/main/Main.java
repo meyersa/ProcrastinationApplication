@@ -33,7 +33,7 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) {
-		System.out.println("Main.main Method Called");
+		Log.writeLog("Main.main Method Called");
 		
 		Main Application = new Main();
 		
@@ -68,7 +68,7 @@ public class Main {
 	 */
 	
 	private void show() {
-		System.out.println("Main.show Method Called");
+		Log.writeLog("Main.show Method Called");
 		
 		/*
 		 * Instantiates the MainGUI class
@@ -82,7 +82,8 @@ public class Main {
 			MainGUI.start(allEvents);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			
+			Log.writeLog(e.toString());
 			
 		}
 	}

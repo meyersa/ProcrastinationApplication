@@ -31,7 +31,7 @@ public class LocalStorage {
 	 */
 	
 	public static boolean checkForCache() {
-		System.out.println("LocalStorage.checkForCache Method Called");
+		Log.writeLog("LocalStorage.checkForCache Method Called");
 		
 		File cacheFolder = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/");
 		String[] cacheFiles = cacheFolder.list();
@@ -46,7 +46,7 @@ public class LocalStorage {
 			// If there's any files in cache directory there is cache, so it returns true 
 			
 		} catch (NullPointerException e) {
-			System.out.println("-- Cache File is empty -- ");
+			Log.writeLog("-- Cache File is empty -- ");
 			whatToReturn = false;
 			
 		}
@@ -54,7 +54,7 @@ public class LocalStorage {
 		
 		try {
 			if (!cacheFolder.exists()) {
-				System.out.println("-- Created Cache Folder --");
+				Log.writeLog("-- Created Cache Folder --");
 				cacheFolder.mkdirs();
 				// If there is no local cache folder we need to make one 
 				
@@ -75,7 +75,7 @@ public class LocalStorage {
 	 */
 	
 	public static Map<Long, Event> readCache() {
-		System.out.println("LocalStorage.readCache Method Called");
+		Log.writeLog("LocalStorage.readCache Method Called");
 		
 		File cacheFile = null;
 		Scanner sc = null;
@@ -90,7 +90,7 @@ public class LocalStorage {
 			// Sets our cacheFile = to the entire Cache directory 
 			
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			Log.writeLog(e.toString());
 			
 		}
 				
@@ -106,7 +106,7 @@ public class LocalStorage {
 			// Sets the cacheFile to the most recent file by name
 			
 		} catch(Exception e) {
-			System.out.println(e);
+			Log.writeLog(e.toString());
 			
 		}
 				
@@ -138,7 +138,7 @@ public class LocalStorage {
 	 */
 	
 	public static void enforceCache() {
-		System.out.println("LocalStorage.enforceCache Method Called");
+		Log.writeLog("LocalStorage.enforceCache Method Called");
 		
 		File cacheFile = null;
 		TreeSet<String> fileList = new TreeSet<String>();
@@ -147,7 +147,7 @@ public class LocalStorage {
 			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/");
 			
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			Log.writeLog(e.toString());
 			
 		}
 		
@@ -156,7 +156,7 @@ public class LocalStorage {
 			
 		}
 		
-		System.out.println("-- Before Deletion " + fileList.size() + " --");
+		Log.writeLog("-- Before Deletion " + fileList.size() + " --");
 
 		while (fileList.size() > 5) {
 			cacheFile = new File(System.getenv("APPDATA") + "/ProcrastinationApplication/Cache/" + fileList.first() + ".txt");
@@ -165,7 +165,7 @@ public class LocalStorage {
 			
 		}
 
-		System.out.println("-- After Deletion " + fileList.size() + " --");
+		Log.writeLog("-- After Deletion " + fileList.size() + " --");
 		
 	}
 	
@@ -178,7 +178,7 @@ public class LocalStorage {
 	 */
 	
 	public static <T> void writeCache(Map<Long, T> map) {		
-		System.out.println("LocalStorage.writeCache Method Called");
+		Log.writeLog("LocalStorage.writeCache Method Called");
 		
 		// Check for 5 existing cache, then delete older, sort by biggest long int 
 		
@@ -193,7 +193,7 @@ public class LocalStorage {
 			fw = new FileWriter(cacheFile);
 			
 		} catch (Exception e) {
-			System.out.println(e);
+			Log.writeLog(e.toString());
 		
 		}
 		// Creates the cache file made with the specific MS 
@@ -204,7 +204,7 @@ public class LocalStorage {
 				fw.write(map.get(eventID).toString() + "\n");
 				
 			} catch (Exception e) {
-				System.out.println(e);
+				Log.writeLog(e.toString());
 
 			}
 		}
