@@ -1,0 +1,1 @@
+javaw --module-path="%PROGRAMFILES%\Java\openjfx-17_windows-x64_bin-sdk\javafx-sdk-17\lib" --add-modules=javafx.controls,javafx.fxml -jar "%APPDATA%\ProcrastinationApplication\PA.jar"
