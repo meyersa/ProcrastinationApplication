@@ -7,7 +7,7 @@
 
 package events;
 
-	/*
+	/**
 	 * ScheduledEvent Class
 	 * For making ScheduledEvent object
 	 * Implements both Event and Comparable
@@ -23,7 +23,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 	private long eventOffHold;
 	// UNIX Time when the event is scheduled for 
 	
-	/*
+	/**
 	 * Constructor Scheduled Event
 	 * Default constructor sets default options 
 	 */
@@ -36,7 +36,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 		
 	}
 
-	/*
+	/**
 	 * Constructor Overloaded ScheduledEvent
 	 * Creates event with included options 
 	 * 
@@ -54,7 +54,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 		
 	}	
 
-	/*
+	/**
 	 * String Method getName
 	 * 
 	 * @return String name of event
@@ -65,7 +65,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 	
 	}
 
-	/*
+	/**
 	 * String Method getDescription
 	 * 
 	 * @return String description of event
@@ -76,7 +76,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 	
 	}
 
-	/*
+	/**
 	 * Long Method getTime
 	 * 
 	 * @return Long time of event creation
@@ -87,7 +87,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 	
 	}
 
-	/*
+	/**
 	 * Long Method getOffHold
 	 * 
 	 * @return Long time event is scheduled for 
@@ -98,7 +98,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 		
 	}
 
-	/*
+	/**
 	 * String Method toString
 	 * 
 	 * @return Formatted output of all event information 
@@ -109,7 +109,7 @@ public class ScheduledEvent implements Event, Comparable<Event> {
 		
 	}
 
-	/*
+	/**
 	 * int Method compareTo
 	 * Method that implements Comparable in order to make the event comparable
 	 * 

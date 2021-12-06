@@ -1,3 +1,10 @@
+/*
+ * Procrastination Application
+ * August Meyers
+ * LocalStorage.java
+ * Handles all storage tasks
+ */
+
 package main;
 
 import java.io.File;
@@ -9,9 +16,23 @@ import java.util.TreeSet;
 
 import events.*;
 
+	/**
+	 * LocalStorage Class
+	 * Wraps LocalStorage methods
+	 */
+
 public class LocalStorage {
 
+	/**
+	 * checkForCache Method
+	 * Checks for cache and returns if there is existing cache
+	 * 
+	 * @return boolean If there is cache or not
+	 */
+	
 	public static boolean checkForCache() {
+		System.out.println("LocalStorage.checkForCache Method Called");
+		
 		File cacheFolder = new File("Cache/");
 		String[] cacheFiles = cacheFolder.list();
 		boolean whatToReturn = false;
@@ -33,7 +54,16 @@ public class LocalStorage {
 		return whatToReturn;
 	}
 	
+	/**
+	 * readCache Method
+	 * Reads the cache from a file and returns findings
+	 * 
+	 * @return Map<Long, Event> Cache found
+	 */
+	
 	public static Map<Long, Event> readCache() {
+		System.out.println("LocalStorage.readCache Method Called");
+		
 		File cacheFile = null;
 		Scanner sc = null;
 		
@@ -87,6 +117,13 @@ public class LocalStorage {
 		
 	}
 	
+	/**
+	 * enforceCache Method
+	 * Deletes excess cache
+	 * 
+	 * @return void
+	 */
+	
 	public static void enforceCache() {
 		System.out.println("LocalStorage.enforceCache Method Called");
 		
@@ -119,7 +156,17 @@ public class LocalStorage {
 		
 	}
 	
+	/**
+	 * writeCache Method
+	 * Writes map to cache
+	 * 
+	 * @param Map<Long, T> map that should be written
+	 * @return void
+	 */
+	
 	public static <T> void writeCache(Map<Long, T> map) {		
+		System.out.println("LocalStorage.writeCache Method Called");
+		
 		// Check for 5 existing cache, then delete older, sort by biggest long int 
 		
 		File cacheFile = null;

@@ -1,6 +1,9 @@
-// Class for sorting the map of events 
-// Takes an input selector from the user, perhaps just use generic 
-// Then sorts the list with that, maybe just use TreeMap 
+/*
+ * Procrastination Application
+ * August Meyers
+ * Sort.java
+ * Sort utility
+ */
 
 package main;
 
@@ -8,9 +11,22 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Sort {
-	public static <K, V extends Comparable<V>> Map<K, V> sortMapByValue(Map<K, V> inputMap) {
+	/**
+	 * Sort Class
+	 * Sort Utility Wrapper
+	 */
 
+public class Sort {
+	
+	/**
+	 * sortMapByValue Method
+	 * Sorts the Map using compareTo
+	 * 
+	 * @param Map<K, V> inputMap Generic sorting map ;)
+	 * @return Map<K, V> sortedMap
+	 */
+	
+	public static <K, V extends Comparable<V>> Map<K, V> sortMapByValue(Map<K, V> inputMap) {
 		System.out.println("Sort.quickSort Method Called");
 
 		/*
@@ -21,16 +37,26 @@ public class Sort {
 		 * In the future this could be manipulated with a different option for
 		 * displaying, perhaps length of description or something
 		 * 
-		 * @param Map<Integer, Event> normally, it could work with others though
-		 * 
 		 * Implement Selection sort or something similar
 		 */
 
 		Map<K, V> finalMap = inputMap.entrySet().stream().sorted(Map.Entry.comparingByValue())
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> {
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> {
 					throw new AssertionError();
 				}, LinkedHashMap::new));
-
+		
+		/*
+		 * Strange logic I found by assembling multiple StackExchange posts that lets me sort maps
+		 * using their stream instead of their actual memory
+		 * This is only virtual though, so we have to assemble everything by listening and collecting
+		 * and then outputting that as its own map
+		 * 
+		 * Source: 
+		 * https://www.baeldung.com/java-hashmap-sort
+		 * https://stackoverflow.com/questions/109383/sort-a-mapkey-value-by-values
+		 * https://mkyong.com/java/how-to-sort-a-map-in-java/
+		 */
+		
 		return finalMap;
 	
 	}

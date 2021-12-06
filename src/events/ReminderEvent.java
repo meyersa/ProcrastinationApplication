@@ -7,7 +7,7 @@
 
 package events;
 
-	/*
+	/**
 	 * ReminderEvent Class
 	 * For making ReminderEvent object
 	 * Implements both Event and Comparable
@@ -20,7 +20,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 	private long eventTime;
 	// Private instance variables 
 	
-	/*
+	/**
 	 * Constructor Scheduled Event
 	 * Default constructor sets default options
 	 */
@@ -32,7 +32,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 		
 	}
 
-	/*
+	/**
 	 * Constructor Overloaded ReminderEvent
 	 * Creates event with included options
 	 * 
@@ -48,7 +48,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 		
 	}
 
-	/*
+	/**
 	 * String Method getName
 	 * 
 	 * @return String name of event
@@ -59,7 +59,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 
 	}
 
-	/*
+	/**
 	 * String Method getDescription
 	 * 
 	 * @return String description of event
@@ -70,7 +70,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 
 	}
 	
-	/*
+	/**
 	 * Long Method getTime
 	 * 
 	 * @return Long time of event creation
@@ -81,7 +81,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 
 	}
 	
-	/*
+	/**
 	 * String Method toString
 	 * 
 	 * @return Formatted output of all event information 
@@ -92,7 +92,7 @@ public class ReminderEvent implements Event, Comparable<Event> {
 		
 	}
 	
-	/*
+	/**
 	 * int Method compareTo
 	 * Method that implements Comparable in order to make the event comparable
 	 * 

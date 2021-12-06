@@ -37,7 +37,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 // All of the needed libraries for the GUI 
 
-	/*
+	/**
 	 * MainGUI Class
 	 * The Main Class that outlines the GUI
 	 */
@@ -57,7 +57,7 @@ public class MainGUI extends Application {
 	static private AnchorPane CreateBox;
 	// All of our datafields for pulling/setting information
 
-	/*
+	/**
 	 * Start Method 
 	 * The class that actually wraps the GUI Required class for JavaFX
 	 * 
@@ -212,12 +212,13 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * Clear Method 
 	 * Clears out all fields on GUI
 	 * 
 	 * @return void
 	 */
+	
 	private void Clear() {
 		System.out.println("MainGUI.Create Method Called");
 
@@ -227,7 +228,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * Create Method
 	 * Creates an Event based off of the filled fields, or doesn't if
 	 * they aren't filled
@@ -286,7 +287,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * menuQuit Method 
 	 * Quit button from Menu
 	 * 
@@ -300,7 +301,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * About Method 
 	 * About button from Menu
 	 * 
@@ -315,7 +316,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * ShowEvents Method 
 	 * Creates all the events based off of the map
 	 * 
@@ -417,7 +418,7 @@ public class MainGUI extends Application {
 
 	}
 	 
-	/*
+	/**
 	 * vboxCreator Method
 	 * Creates default GUI box
 	 * 
@@ -449,7 +450,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * vboxCreateInput Method
 	 * Creates a list of boxes with allEvents events display
 	 * 
@@ -558,7 +559,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * Delete Method
 	 * Deletes the current Event
 	 * 
@@ -582,7 +583,7 @@ public class MainGUI extends Application {
 		
 	}
 
-	/*
+	/**
 	 * Start Method
 	 * Starts the GUI utilizing the same thread
 	 * 
@@ -599,7 +600,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * end Method
 	 * Quits GUI
 	 * 
@@ -623,7 +624,7 @@ public class MainGUI extends Application {
 		}
 	}
 
-	/*
+	/**
 	 * Save Method
 	 * Saves the current events
 	 * 
@@ -637,7 +638,7 @@ public class MainGUI extends Application {
 		
 	}
 
-	/*
+	/**
 	 * displayError Method
 	 * Displays errors to the errorField
 	 * 
@@ -653,7 +654,7 @@ public class MainGUI extends Application {
 
 	}
 
-	/*
+	/**
 	 * hideError Method
 	 * Hides the error on screen
 	 * 
