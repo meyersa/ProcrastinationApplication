@@ -1,6 +1,5 @@
 # Procrastination Application
 The program to help you remember to do your work. Perfect for programmers who get easily distracted...
-#
 
 ## About
 Created by August Meyers
