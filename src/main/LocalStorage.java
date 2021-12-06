@@ -33,12 +33,12 @@ public class LocalStorage {
 		return whatToReturn;
 	}
 	
-	public static Map<Integer, Event> readCache() {
+	public static Map<Long, Event> readCache() {
 		File cacheFile = null;
 		Scanner sc = null;
 		
 		TreeSet<String> sortedList = new TreeSet<String>();
-		Map<Integer, Event> map = new HashMap<Integer, Event>();
+		Map<Long, Event> map = new HashMap<Long, Event>();
 		String currentLine[] = null;
 		// Declaring our variables 
 		
@@ -71,10 +71,10 @@ public class LocalStorage {
 			currentLine = sc.nextLine().split(",");
 					
 			if (currentLine[0].equals("ReminderEvent")) {
-				map.put((int) Long.parseLong(currentLine[3]), new ReminderEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3])));
+				map.put(Long.parseLong(currentLine[3]), new ReminderEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3])));
 				
 			} else if (currentLine[0].equals("ScheduledEvent")) {
-				map.put((int) Long.parseLong(currentLine[3]), new ScheduledEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3]), Long.parseLong(currentLine[4])));
+				map.put(Long.parseLong(currentLine[3]), new ScheduledEvent(currentLine[1], currentLine[2], Long.parseLong(currentLine[3]), Long.parseLong(currentLine[4])));
 
 			}
 			
@@ -119,7 +119,7 @@ public class LocalStorage {
 		
 	}
 	
-	public static <T> void writeCache(Map<Integer, T> map) {		
+	public static <T> void writeCache(Map<Long, T> map) {		
 		// Check for 5 existing cache, then delete older, sort by biggest long int 
 		
 		File cacheFile = null;
@@ -139,7 +139,7 @@ public class LocalStorage {
 		// Creates the cache file made with the specific MS 
 		// Later when we look for the right cache file, we can just look at the time it was created by the biggest number
 		
-		for (int eventID : map.keySet()) {
+		for (Long eventID : map.keySet()) {
 			try {
 				fw.write(map.get(eventID).toString() + "\n");
 				

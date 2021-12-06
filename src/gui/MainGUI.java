@@ -31,7 +31,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainGUI extends Application {
-	static private Map<Integer, Event> allEvents;
+	static private Map<Long, Event> allEvents;
 	static private ScrollPane eventsDisplay;
 
 	static private TextField creationName;
@@ -217,17 +217,17 @@ public class MainGUI extends Application {
 		if ((creationName.getText().equals("") && creationDescription.getText().equals(""))) {
 			errorPane.setVisible(true);
 			return 0;
-
+					
 		} else {
 			try {
 				if (creationTime.getText().equals("")) {
-					allEvents.put((int) System.currentTimeMillis(), new ReminderEvent(creationName.getText(),
+					allEvents.put(System.currentTimeMillis(), new ReminderEvent(creationName.getText(),
 							creationDescription.getText(), System.currentTimeMillis()));
 
 				} else {
-					allEvents.put((int) System.currentTimeMillis(),
+					allEvents.put(System.currentTimeMillis(),
 							new ScheduledEvent(creationName.getText(), creationDescription.getText(),
-									System.currentTimeMillis(), Integer.parseInt(creationTime.getText())));
+									System.currentTimeMillis(), Long.parseLong(creationTime.getText())));
 
 				}
 
@@ -270,6 +270,7 @@ public class MainGUI extends Application {
 		List<VBox> columns = new ArrayList<VBox>();
 
 		allEvents = main.Sort.sortMapByValue(allEvents);
+		main.Notification.initNotification(allEvents);
 
 		try {
 			numOfEvents = allEvents.size();
@@ -374,7 +375,7 @@ public class MainGUI extends Application {
 		Text Description;
 		VBox defaultEvent;
 
-		for (int current : allEvents.keySet()) {
+		for (Long current : allEvents.keySet()) {
 			currentEvent = allEvents.get(current);
 
 			if (currentEvent instanceof ReminderEvent) {
@@ -411,7 +412,7 @@ public class MainGUI extends Application {
 
 			} else if (currentEvent instanceof ScheduledEvent) {
 				Name = new Text(currentEvent.getName());
-				Time = new Text((new java.util.Date((long) currentEvent.getTime() * 1000).toString()));
+				Time = new Text((new java.util.Date(((ScheduledEvent) currentEvent).getOffHold()).toString()));
 				Description = new Text(currentEvent.getDescription());
 
 				Name.setFill(Color.web("#ebe1eb"));
@@ -461,7 +462,7 @@ public class MainGUI extends Application {
 	}
 
 	private void Delete(Event currentEvent) {		
-		allEvents.remove((int) currentEvent.getTime());
+		allEvents.remove(currentEvent.getTime());
 		
 		showEvents();
 
@@ -471,7 +472,7 @@ public class MainGUI extends Application {
 		
 	}
 
-	public void start(Map<Integer, Event> allEvents) {
+	public void start(Map<Long, Event> allEvents) {
 		System.out.println("MainGUI.start Method Called");
 
 		this.allEvents = allEvents;
@@ -490,8 +491,8 @@ public class MainGUI extends Application {
 			System.exit(0);
 
 		} catch (Exception e) {
-			ErrorGUI.display(e);
-
+			System.out.println(e.toString());
+			
 		}
 	}
 

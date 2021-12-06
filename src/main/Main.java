@@ -1,13 +1,12 @@
 package main;
 
-import gui.ErrorGUI;
 import gui.MainGUI;
 import java.util.HashMap;
 import java.util.Map;
 import events.*;
 
 public class Main {
-	private Map<Integer, Event> allEvents;
+	private Map<Long, Event> allEvents;
 	private MainGUI MainGUI;
 
 	public static void main(String[] args) {
@@ -25,12 +24,12 @@ public class Main {
 			allEvents = Sort.sortMapByValue(allEvents);
 
 		} else {
-			allEvents = new HashMap<Integer, Event>();
+			allEvents = new HashMap<Long, Event>();
 		
 		}
 	}
 
-	public void syncEvents(Map<Integer, Event> allEvents) {
+	public void syncEvents(Map<Long, Event> allEvents) {
 		
 		/*
 		 * For inevitably when the Map gets out of sync, now it can be restored for storage
@@ -54,7 +53,7 @@ public class Main {
 			MainGUI.start(allEvents);
 
 		} catch (Exception e) {
-			Error.createErrorGUI(e);
+			e.printStackTrace();
 			
 		}
 	}
