@@ -8,9 +8,20 @@ GUI based program that lets you create "events" that you need to be reminded abo
 
 ![Screenshot](https://raw.githubusercontent.com/meyersa/ProcrastinationApplication/master/assets/ProcrastinationApplicationGUI.png)
 
-## To-do
-- **Setup backend Unix TIME alert system** - Take a map<Integer, Event> input and create timers
-- Stuff on OneNote, quite a bit left
+## Getting Started
+### Requirements
+- **JavaFX 17 in your ProgramFiles directory**
+- **Java SDK 16**
+
+### To run (easy way)
+- Download the first release from the GitHub release [Page](https://github.com/meyersa/ProcrastinationApplication/releases/tag/Release-1). 
+- Then simply run the INSTALL.bat and finally the PA.bat on the Desktop
+
+Or, if you prefer to compile it from Source
+- Download the source folder
+- `cd` into the `src` directory
+- Compile the packages `javac --module-path="%PROGRAMFILES%\Java\openjfx-17_windows-x64_bin-sdk\javafx-sdk-17\lib" --add-modules=javafx.controls,javafx.fxml -d ./build main/*.java events/*.java gui/*.java`
+- Use Java to launch the Main class from the build directory `java  --module-path="%PROGRAMFILES%\Java\openjfx-17_windows-x64_bin-sdk\javafx-sdk-17\lib" --add-modules=javafx.controls,javafx.fxml -cp build main.Main`
 
 ## Abstract - Future Plan
 - UI Showing manager for multiple UIs to be open 
