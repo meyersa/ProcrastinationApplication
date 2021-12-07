@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 	/**
 	 * Notification Class
@@ -72,6 +73,16 @@ public class Notification {
 						public void run() {
 							sendNotification(current.getName(), current.getDescription());
 							// Calls the notification method when the time happens 
+							
+							Timers.get(current.getTime()).scheduleAtFixedRate(new TimerTask() {
+
+								@Override
+								public void run() {
+									sendNotification(current.getName(), current.getDescription());
+									
+								}
+								
+							}, 300000, 1800000);
 							
 						}
 					}, ((ScheduledEvent) current).getOffHold() - current.getTime() - 900000);
